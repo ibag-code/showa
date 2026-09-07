@@ -34,9 +34,12 @@
 
   let element = document.querySelector('span');
 
-   setInterval(() => {
-        span
-    }, 1000)
+
+    setInterval(() => {
+        // recalculate
+        currentTime = dayjs().format('HH:mm:ss');  
+        root.render(division);
+    }, 1000);
 
     print(updatedTime)
 
