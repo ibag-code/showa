@@ -25,7 +25,7 @@
     <script type="text/babel">   
 
 
-    //Input label 
+    //Input Component
     function ChatInput() {
        return (
         <>
@@ -35,11 +35,44 @@
        );
     }
 
+
+
+    // Chat Component
+    function ChatMessage (props) {
+      console.log(props.sender)
+      const message = props.message;
+      const sender = props.sender;
+
+      if (sender === "robot") {
+        return (
+          <div>
+              {message}
+              <img src="robot.png" alt="user image" width="40" />  
+          </div>
+        );
+      }
+      
+      return (
+        <div>
+            {message}
+            <img src="user.png" alt="user image" width="40" />  
+        </div>
+      );
+    }
+
       const application  = 
         <>  
             {ChatInput()}
             <ChatInput></ChatInput>
-            <ChatInput / >
+            <ChatInput />
+
+
+
+            <ChatMessage message="Hello ChatBot" sender="user"/>
+            <ChatMessage message="Hello! how can i help you?" sender="robot"/>
+            <ChatMessage message="Can you get me todays day" sender="user"/>
+            <ChatMessage message="Today is September 9" sender="robot" />
+
         </>;
 
 
