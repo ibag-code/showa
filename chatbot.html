@@ -12,18 +12,18 @@
 
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
+
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
 
 
 
 
-    <script src="https://unpkg.com/supersimpledev/babel.js"> </script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
 
 
     <script type="text/babel">   
-
 
     //Input Component
     function ChatInput() {
@@ -41,30 +41,12 @@
 
 
 
-    // Chat Component
+    //Chat Component
     function ChatMessage (props) {
       
       const message = props.message;
       const sender = props.sender;
-
-      //Destructioning
-      // const { message, sender } = props;
-
-
-      //robot chat
-
-      /*
-      if (sender === "robot") {
-        return (
-          <div>
-              <img src="robot.png" alt="user image" width="40" />  
-              {message}
-          </div>
-        );
-      }
-      */
       
-
 
       return (
         <div> 
@@ -88,12 +70,22 @@
             <ChatInput></ChatInput>
             <ChatInput />
 
+            <ChatMessage 
+            message="Hello ChatBot" 
+            sender="user"
+            />
 
+            <ChatMessage 
+            message="Hello! how can i help you?" sender="robot"
+            />
 
-            <ChatMessage message="Hello ChatBot" sender="user"/>
-            <ChatMessage message="Hello! how can i help you?" sender="robot"/>
-            <ChatMessage message="Can you get me todays day" sender="user"/>
-            <ChatMessage message="Today is September 9" sender="robot" />
+            <ChatMessage 
+            message="Can you get me todays day" sender="user"
+            />
+
+            <ChatMessage 
+            message="Today is September 9" sender="robot" 
+            />
 
         </>;
 
