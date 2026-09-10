@@ -75,11 +75,48 @@
             );
         }
 
-      const application  = 
+      
+        function ProductDetails ({productname, price, discountprice, image}) {
+            /*
+            const productName = props.productname;
+            const price = props.price
+            const discountprice = props.discountprice
+            */
+            return (
+                <>  
+                    <div>
+                        <img src={image} alt="" width="200" />
+                    </div>
+                    
+                    <div>
+                         {productname}
+                     </div>
+
+                    <div>
+                        {/* If true, renders "Active", otherwise renders "Offline" */}
+                        {discountprice ? <del> Price:{price}  </del> : <div> Price:{price} </div> }
+                    </div>
+
+                    <div>
+                    {discountprice && <div> Discount Price: $5.99 </div>}
+                    </div>
+                 
+                    
+
+                    <button> Add to cart</button>
+                </>
+            )
+        }
+      
+        const application  = 
         <>  
             <App />
             {LoginForm() }
             <Ecommerce></Ecommerce>
+
+            <ProductDetails productname="Tennis ball" price="$6.90" image="tenniss.jpg" />
+            <ProductDetails productname="Cutton Socks" price="$10.99" discountprice image="socks.jpg" />
+            <ProductDetails productname="Plain T-Shirt" price="$7.90" image="plain-shirt.jpg" />
 
         </>;
 
