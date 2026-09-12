@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Clicked Button </title>
+  </head>
+  <body>
+
+
+    <div class="js-container"></div>
+
+ 
+
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+
+
+
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+
+
+    <script type="text/babel">  
+
+    function TheInput ({input, setInput}) {
+
+       
+
+        function TheInput () {
+            
+                setInput(event.target.value)
+                console.log(input)
+        }
+
+        function Reset () {
+            setInput("")
+        }
+
+
+        function NameSample () {
+            setInput("Just Get your stuff together")
+        }
+
+        return (
+            <>
+                <input type="text" 
+                placeholder="Type a name here" 
+                size="50" 
+                value= {input}
+                onChange={TheInput} />
+
+
+                <button 
+                    onClick = {Reset}
+                    > Reset 
+                </button>
+
+                <button 
+                onClick = {NameSample}
+                > 
+                Example 
+                </button>
+
+                <p> Hello {input}</p>
+
+                
+            </>
+        )
+    }
+
+
+    // function TheReset ({input, setInput}) {
+
+    //     function Reset () {
+    //         setInput("")
+    //     }
+
+    //     return (
+    //         <>
+    //             <button 
+    //                 onClick = {Reset}
+    //                 > Reset 
+    //             </button>
+    //         </> 
+    //     )
+    // }
+
+
+
+    function TheNameDisplay ({input, setInput}) {
+        return (
+            <p> Hello {input} </p>
+        )
+    }
+
+    
+    function AppDisplay() {
+
+
+         const [ input, setInput] = React.useState('')
+
+        return (
+            <>
+                <TheInput input={input} setInput={setInput}/>
+                <TheNameDisplay input={input} setInput={setInput} />
+            </>
+        )
+       }
+
+
+
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+
+      root.render(<AppDisplay />);
+    </script>
+
+
+  </body>
+</html>   
