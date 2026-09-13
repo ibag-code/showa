@@ -8,8 +8,6 @@
 
     <div class="js-container"></div>
 
- 
-
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
 
@@ -29,17 +27,29 @@
     <script type="text/babel">   
 
     //Input Component
-    function ChatInput({ chatMessages, setChatMessages}) {
+    function ChatInput({ chatMessages, setChatMessages, setIsLoading }) {
       
       const theInputTextArray = React.useState("");
       const inputText = theInputTextArray[0];
       const setInputText = theInputTextArray[1];
 
+
+
+
+
+
       function saveInputText (event) {
         setInputText (event.target.value)
       }
 
-      function sendMessage () {
+
+
+
+     async function sendMessage () {
+      if (inputText.trim() === '') {
+        return;
+      }
+
         const newChatMessages =  [
             ...chatMessages,
           {
@@ -50,9 +60,13 @@
         ]
 
         setChatMessages(newChatMessages)
+        setIsLoading(true);
 
 
-        const botResponce = Chatbot.getResponse(inputText)
+
+
+
+        const botResponce = await Chatbot.getResponseAsync(inputText)
 
         setChatMessages([
             ...newChatMessages,
@@ -63,10 +77,25 @@
           }
         ])
 
-
-
+        setIsLoading(false) 
         setInputText('');
       }
+
+  
+      function TheEnter (event) {
+        if (event.key ==="Enter") {
+          sendMessage()
+          setInputText('')
+        }
+
+        if (event.key === "Escape") {
+            // alert("Escape text")
+            setInputText('');
+
+            ;
+        }
+      }
+
 
        return (
         <>
@@ -75,6 +104,7 @@
           placeholder="Send a message to Chatbot"  
           size= "50" 
           onChange={saveInputText }
+          onKeyDown = {TheEnter }
           value = {inputText}  //controlled input
         />
           <button 
@@ -84,6 +114,9 @@
         </>
        );
     }
+
+
+
 
 
 
@@ -109,7 +142,7 @@
     }    
      
     
-    function ChatMessageFrame ({ chatMessages}) {
+    function ChatMessageFrame ({ chatMessages, isLoading}) {
           
       return(
         <> 
@@ -125,6 +158,7 @@
               );
           })}
 
+          {isLoading && <div>Loading...</div>}
         </>
       )
 
@@ -139,7 +173,7 @@
 
             
           //Converting the data into state
-      const chatMessagesArray = React.useState(
+      const [chatMessages, setChatMessages] = React.useState(
         [{
             id: 'id1',
             message: "Hello ChatBot",
@@ -161,9 +195,12 @@
             sender: "robot"
           }
         ]);
-      const chatMessages = chatMessagesArray[0];
-      const setChatMessages = chatMessagesArray[1];
+      // const chatMessages = chatMessagesArray[0];
+      // const setChatMessages = chatMessagesArray;
 
+
+        //Loading State 
+      const [isLoading, setIsLoading] = React.useState(false)
 
         return (
           <>  
@@ -171,9 +208,11 @@
               <ChatInput 
               chatMessages={chatMessages}
               setChatMessages={setChatMessages}
+              setIsLoading={setIsLoading} 
               />
               <ChatMessageFrame 
               chatMessages={chatMessages}
+              isLoading={isLoading}  
                />
           </>
         ) 
