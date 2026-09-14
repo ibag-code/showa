@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Clicked Button </title>
+
+
+    <style>
+        .small-blue-button {
+            background-color: rgb(25, 135, 33);
+            border: 0px solid ;
+
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+    </style>
+  </head>
+  <body>
+
+
+    <div class="js-container"></div>
+
+ 
+
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+
+
+
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+
+
+    <script type="text/babel">  
+
+
+    function RigtButton () { 
+        return (
+            <button className="small-blue-button"> On </button>
+        )
+    }
+   
+
+
+
+
+    
+    function AppDisplay() {
+
+
+        return (
+            <>
+
+            <RigtButton />
+
+
+            </>
+        )
+       }
+
+
+
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+
+      root.render(<AppDisplay />);
+    </script>
+
+
+  </body>
+</html>   
