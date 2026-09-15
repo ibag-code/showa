@@ -51,7 +51,7 @@
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
 
 
@@ -59,9 +59,40 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
+    
+    <script type="text/babel"> 
+
+    function TimeSettter () {
+
+    const  Time = dayjs();
+    const currentTime = dayjs().format('HH:mm:ss')
 
 
-    <script type="text/babel">  
+    const [isTime, setTime] = React.useState(dayjs().format('HH:mm:ss'));
+
+     React.useEffect( () => {
+
+        setInterval( () => {
+            setTime(dayjs().format('HH:mm:ss'))
+            console.log('run code ')
+        },1000)
+        
+     }, [])//Dependency array make the code execute once
+
+
+    return (
+        <>
+            <p> Current time: {isTime}</p>
+        </>
+    )
+
+
+    }
+
+
+
+
+
 
     function Login () {
 
@@ -113,6 +144,61 @@
 
 
 
+    function Counter() {
+    const [count, setCount] = React.useState(0);
+    const [isAutoClicking, setIsAutoClicking] = React.useState(false);
+
+    const buttonElement = React.useRef(null);   // 📦 box to hold the counter button
+
+    function handleCount() {
+        setCount(count + 1);              // ONLY counts — safe to be "clicked" by code
+    }
+
+    function toggleAutoClick() {
+        setIsAutoClicking(!isAutoClicking);  // ONLY toggles — never clicked by the interval
+    }
+
+    function Reset() {
+        setCount(0);
+    }
+
+    React.useEffect(() => {
+        let intervalId = null;
+
+        if (isAutoClicking) {
+        intervalId = setInterval(() => {
+            if (buttonElement.current) {
+            buttonElement.current.click();   // 🖱️ code clicks the COUNTER button
+            }
+        }, 1000);
+        }
+
+        return () => clearInterval(intervalId);  // 🧹 cleanup outside the if
+    }, [isAutoClicking]);
+
+
+    const autoClick = isAutoClicking ? "Stop Auto Click" : "Auto Click" ;
+
+    
+    return (
+        <>
+        <button
+            ref={buttonElement}       // ← ref goes on the COUNTER button
+            onClick={handleCount}     // ← so clicking it only counts
+        >
+            Clicked {count} times
+        </button>
+
+        <button onClick={Reset}>Reset</button>
+
+        <button onClick={toggleAutoClick}>
+            {autoClick}
+        </button>
+        </>
+    );
+    }
+
+
     
     function AppDisplay() {
 
@@ -120,6 +206,8 @@
         return (
             <>
                 <Login />
+                <TimeSettter />
+                <Counter />
             </>
         )
        }
