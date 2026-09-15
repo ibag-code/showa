@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Clicked Button </title>
+
+
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px;
+        }
+        .input {
+            border: 1px solid rgb(211, 210, 210);
+            width: 300px;
+            height: 25px;
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            background-color: aliceblue;
+        }
+
+        .auth {
+            padding: 12px 20px;
+            background-color: rgb(0, 123, 255);
+            color: white;
+            margin-right: 6px;
+            border: 0px solid rgb(0, 123, 255);
+            border-radius: 12px;
+        }
+
+        .showBtn {
+            margin-left: 10px;
+        }
+
+
+
+
+    </style>
+  </head>
+  <body>
+
+
+    <div class="js-container"></div>
+
+ 
+
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+
+
+
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+
+
+    <script type="text/babel">  
+
+    function Login () {
+
+        const [isShow, setShow] = React.useState(false)
+
+        function showBtn () {
+            setShow(!isShow) 
+            
+        }
+
+        const show = isShow ?  "text" :"password" ;
+
+        console.log(show)
+        console.log(isShow)
+    return (
+        <>
+            <p>Hello, Welcome to my website</p>
+
+            <div>
+                <input 
+                    type="text" 
+                    placeholder="Email"
+                    className="input" 
+                    />
+            </div>
+
+            <div>
+                <input 
+                    type= {show}
+                    placeholder="Password"
+                    className="input" 
+                    />
+
+            <button 
+                onClick={showBtn}                   className="showBtn" 
+                > Show 
+            </button>
+
+        </div>
+
+        
+        <button className="auth"> Login </button>
+        <button className="auth"> Sign up </button>
+        </>
+    )
+    }
+
+
+
+
+
+    
+    function AppDisplay() {
+
+
+        return (
+            <>
+                <Login />
+            </>
+        )
+       }
+
+
+
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+
+      root.render(<AppDisplay />);
+    </script>
+
+
+  </body>
+</html>   
