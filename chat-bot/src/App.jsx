@@ -1,35 +1,61 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import { ChatInput } from './component/ChatInput';
+
+import ChatMessageFrame from './component/ChatMessageFrame';
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+    function AppDisplay() {
+            
+          //Converting the data into state
+      const [chatMessages, setChatMessages] = useState(
+        [{
+            id: 'id1',
+            message: "Hello ChatBot",
+            sender: "user"
+          },
+          {
+            id: 'id2',
+            message: "Hello! how can i help you?",
+            sender: "robot"
+          }, 
+          {
+            id: 'id3',
+            message: "Can you get me todays day",
+            sender: "user"
+          }, 
+          {
+            id: 'id4',
+            message: "Today is September 9",
+            sender: "robot"
+          }
+        ]);
+
+
+        //Loading State 
+      const [isLoading, setIsLoading] = useState(false)
+
+        return (
+          <div className ="app-container">  
+
+
+              <ChatMessageFrame 
+              chatMessages={chatMessages}
+              isLoading={isLoading}  
+               />
+
+
+              <ChatInput 
+              chatMessages={chatMessages}
+              setChatMessages={setChatMessages}
+              setIsLoading={setIsLoading} 
+              />
+          </div>
+        ) 
+
+       }
+
+export default AppDisplay
