@@ -1,5 +1,6 @@
-import { useRef, useEffect } from 'react'; 
-import { ChatMessage } from './Chatmessages';
+import { useRef, useEffect } from 'react';  
+import { ChatMessage } from './Chatmessage'
+
 
 
 //MVC component

@@ -6,7 +6,6 @@ import {Chatbot} from 'supersimpledev'
 
 
 
-
 //Input Component
 export function ChatInput({ chatMessages, setChatMessages, setIsLoading }) {
     
