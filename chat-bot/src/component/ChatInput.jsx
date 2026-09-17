@@ -13,7 +13,7 @@ export function ChatInput({ chatMessages, setChatMessages, setIsLoading }) {
     // const inputText = theInputTextArray[0];
     // const setInputText = theInputTextArray[1];
 
-
+ 
 
     function saveInputText (event) {
     setInputText (event.target.value)
